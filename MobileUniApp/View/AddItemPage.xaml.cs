@@ -37,11 +37,17 @@ namespace MobileUniApp.View
 
                 App.DB.SaveNewItem(assessment);
             }
+            ClosePage();
         }
 
         public void CancelButtonClicked(object sender, EventArgs e)
         {
+            ClosePage();
+        }
 
+        private async void ClosePage()
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }
