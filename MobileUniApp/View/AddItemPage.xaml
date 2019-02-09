@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MobileUniApp.View.AddItemPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label x:Name="pageTitle" Margin="25" Text="Add New Term" FontSize="24" HorizontalTextAlignment="Center" />
+                <Label Text="Title:" />
+                <Entry x:Name="title" />
+                <Label x:Name="typeOrStatus" Text="Status:" />
+                
+                <Picker x:Name="statusPicker">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Not Started</x:String>
+                            <x:String>Current</x:String>
+                            <x:String>Complete</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                
+                <!-- Picker switches to this if adding assessment -->
+                <Picker x:Name="typePicker" IsVisible="false">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Objective</x:String>
+                            <x:String>Performance</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                
+                <Label Text="Start Date:" />
+                <DatePicker x:Name="startDatePicker"/>
+                <Label Text="End Date:"/>
+                <DatePicker x:Name="endDatePicker"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Save" Margin="25,25" HorizontalOptions="StartAndExpand" Clicked="SaveButtonClicked"/>
+                    <Button Text="Cancel" Margin="25,25" HorizontalOptions="EndAndExpand" Clicked="CancelButtonClicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

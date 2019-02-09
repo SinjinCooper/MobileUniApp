@@ -16,7 +16,7 @@ namespace MobileUniApp
 
             DB = new Database(dbPath);
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

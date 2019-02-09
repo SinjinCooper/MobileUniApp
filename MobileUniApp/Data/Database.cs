@@ -1,4 +1,5 @@
 ﻿using System;
+//using MobileUniApp.Model;
 using SQLite;
 
 namespace MobileUniApp.Data
@@ -16,6 +17,37 @@ namespace MobileUniApp.Data
             conn.CreateTable<Instructor>();
         }
 
+        public void SaveNewItem(Term term)
+        {
+            try
+            {
+                conn.Insert(term);
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+        }
 
+        public void SaveNewItem(Course course)
+        {
+            try
+            {
+                conn.Insert(course);
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+        }
+
+        public void SaveNewItem(Assessment assessment)
+        {
+            try {
+                conn.Insert(assessment);
+            } catch (Exception ex) {
+                //
+            }
+        }
     }
 }

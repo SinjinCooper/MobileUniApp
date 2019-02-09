@@ -1,7 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:MobileUniApp" x:Class="MobileUniApp.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <ScrollView>    
+        <StackLayout Spacing="0">
+            
+            <Label Text="WGU" TextColor="White" BackgroundColor="Navy" FontAttributes="Bold" FontSize="48"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <BoxView Color="Black" WidthRequest="100" HeightRequest="5" />
+            
+            <StackLayout x:Name="TermsLayout">
+            </StackLayout>
+            
+            <StackLayout x:Name="AddButtonLayout">
+                <!-- Keeps add button below terms. -->
+                <Button Text="+Add Term" Clicked="AddTermButtonClicked"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
