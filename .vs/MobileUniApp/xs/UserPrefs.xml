@@ -1,0 +1,19 @@
+﻿<Properties StartupConfiguration="{1B6000E3-A21C-4168-A7E7-55F5D37B5B54}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileUniApp/Data/Database.cs">
+    <Files>
+      <File FileName="MobileUniApp/MainPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MobileUniApp/MainPage.xaml" Line="7" Column="15" />
+      <File FileName="MobileUniApp/Model/Term.cs" Line="19" Column="46" />
+      <File FileName="MobileUniApp/Data/Database.cs" Line="19" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.MobileUniApp FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MobileUniApp.Android FirstBuild="True" PreferredExecutionTarget="Android.Android_Accelerated_Oreo" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MobileUniApp.iOS FirstBuild="True" />
+</Properties>
