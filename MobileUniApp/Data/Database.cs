@@ -1,6 +1,7 @@
 ﻿using System;
 //using MobileUniApp.Model;
 using SQLite;
+using System.Collections.Generic;
 
 namespace MobileUniApp.Data
 {
@@ -17,37 +18,49 @@ namespace MobileUniApp.Data
             conn.CreateTable<Instructor>();
         }
 
+        public List<Term> GetAllTerms()
+        {
+            try {
+                return conn.Table<Term>().ToList();
+            }
+            catch (Exception ex) { }
+            return new List<Term>();
+        }
+
+        public Term GetTermByClassId(string classId)
+        {
+            try {
+                int id = Int32.Parse(classId);
+                return conn.Table<Term>().Where(i => i.TermId == id).First();
+            }
+            catch (Exception ex) { }
+            return new Term();
+        }
+
+
+
         public void SaveNewItem(Term term)
         {
-            try
-            {
+            try {
                 conn.Insert(term);
             }
-            catch (Exception ex)
-            {
-                //
-            }
+            catch (Exception ex) { }
         }
 
         public void SaveNewItem(Course course)
         {
-            try
-            {
+            try {
                 conn.Insert(course);
             }
-            catch (Exception ex)
-            {
-                //
-            }
+            catch (Exception ex) { }
         }
 
         public void SaveNewItem(Assessment assessment)
         {
             try {
                 conn.Insert(assessment);
-            } catch (Exception ex) {
-                //
             }
+            catch (Exception ex) { }
         }
     }
 }
