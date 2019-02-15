@@ -18,6 +18,8 @@ namespace MobileUniApp.Data
             conn.CreateTable<Instructor>();
         }
 
+
+        // TERMS --------------------------------------------------------------//
         public List<Term> GetAllTerms()
         {
             try {
@@ -38,6 +40,7 @@ namespace MobileUniApp.Data
         }
 
 
+        // COURSES ------------------------------------------------------------//
         public List<Course> GetCoursesByTerm(Term term)
         {
             try {
@@ -47,9 +50,29 @@ namespace MobileUniApp.Data
             return new List<Course>();
         }
 
+        public Course GetCourseByClassId(string classId)
+        {
+            try {
+                int id = Int32.Parse(classId);
+                return conn.Table<Course>().Where(i => i.CourseId == id).First();
+            }
+            catch (Exception ex) { }
+            return new Course();
+        }
 
 
+        // ASSESSMENTS --------------------------------------------------------//
+        public List<Assessment> GetAssessmentsByCourse(Course course)
+        {
+            try {
+                return conn.Table<Assessment>().Where(i => i.CourseId == course.CourseId).ToList();
+            }
+            catch (Exception ex) { }
+            return new List<Assessment>();
+        }
 
+
+        // SAVE NEW ITEM ------------------------------------------------------//
         public void SaveNewItem(Term term)
         {
             try {
