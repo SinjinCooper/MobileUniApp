@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MobileUniApp.View.TermPage">
+    <ContentPage.Content>
+        <ScrollView>    
+            <StackLayout Spacing="0">
+                
+                <Label x:Name="titleLabel" TextColor="White" BackgroundColor="Navy" FontAttributes="Bold" FontSize="32"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="5" />
+                
+                <StackLayout x:Name="CoursesLayout" Spacing="0">
+                </StackLayout>
+                
+                <StackLayout x:Name="AddButtonLayout">
+                    <!-- Keeps add button below terms. -->
+                    <Button Text="+Add Course" Clicked="AddCourseButtonClicked"/>
+                </StackLayout>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

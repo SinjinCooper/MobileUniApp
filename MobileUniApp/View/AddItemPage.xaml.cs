@@ -18,6 +18,7 @@ namespace MobileUniApp.View
         {
             if (pageType == "assessment") {
                 pageTitle.Text = "Add New Assessment";
+                typeOrStatus.Text = "Type";
                 statusPicker.IsVisible = false;
                 typePicker.IsVisible = true;
             }
@@ -32,11 +33,34 @@ namespace MobileUniApp.View
                 Assessment assessment = new Assessment
                 {
                     Title = title.Text,
-                    AssessmentType = typePicker.SelectedItem.ToString()
+                    AssessmentType = typePicker.SelectedItem.ToString(),
+                    StartDate = startDatePicker.Date,
+                    EndDate = endDatePicker.Date
                 };
-
                 App.DB.SaveNewItem(assessment);
             }
+            else if (pageTitle.Text == "Add New Course") {
+                Course course = new Course
+                {
+                    Title = title.Text,
+                    Status = statusPicker.SelectedItem.ToString(),
+                    StartDate = startDatePicker.Date,
+                    EndDate = endDatePicker.Date
+                };
+                App.DB.SaveNewItem(course);
+            }
+            else {
+                Term term = new Term
+                {
+                    Title = title.Text,
+                    Status = statusPicker.SelectedItem.ToString(),
+                    StartDate = startDatePicker.Date,
+                    EndDate = endDatePicker.Date
+                };
+                App.DB.SaveNewItem(term);
+            }
+
+
             ClosePage();
         }
 
