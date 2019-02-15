@@ -35,6 +35,8 @@ namespace MobileUniApp
             editButton.Clicked += EditTermClicked;
             Button deleteButton = new Button { ClassId = term.TermId.ToString(), Text = "Delete" };
             deleteButton.Clicked += DeleteTermClicked;
+            BoxView border = new BoxView { Color = Color.Black, WidthRequest = 100, HeightRequest = 3 };
+
 
             Grid grid = new Grid { RowSpacing = 0, ColumnSpacing = 0 };
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -53,6 +55,7 @@ namespace MobileUniApp
             Grid.SetColumnSpan(termButton, 2);
 
             TermsLayout.Children.Add(grid);
+            TermsLayout.Children.Add(border);
         }
 
         public void OnTermClicked(object sender, EventArgs e)
@@ -74,7 +77,7 @@ namespace MobileUniApp
 
         async void AddTermButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AddItemPage("assessment"));
+            await Navigation.PushModalAsync(new AddItemPage("term"));
         }
     }
 }
