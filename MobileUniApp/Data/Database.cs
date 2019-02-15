@@ -38,6 +38,17 @@ namespace MobileUniApp.Data
         }
 
 
+        public List<Course> GetCoursesByTerm(Term term)
+        {
+            try {
+                return conn.Table<Course>().Where(i => i.TermId == term.TermId).ToList();
+            }
+            catch (Exception ex) { }
+            return new List<Course>();
+        }
+
+
+
 
         public void SaveNewItem(Term term)
         {
