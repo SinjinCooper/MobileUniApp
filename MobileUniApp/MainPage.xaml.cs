@@ -62,7 +62,7 @@ namespace MobileUniApp
         {
             var id = ((Button)sender).ClassId;
             Term termClicked = App.DB.GetTermByClassId(id);
-            //Navigation.PushAsync();
+            Navigation.PushAsync(new TermPage(termClicked));
         }
 
         public void EditTermClicked(object sender, EventArgs e)
