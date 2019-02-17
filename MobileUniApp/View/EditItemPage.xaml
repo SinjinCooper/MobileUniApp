@@ -3,7 +3,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label x:Name="pageTitle" Margin="25" Text="Edit Term" FontSize="24" HorizontalTextAlignment="Center" />
+                <Label x:Name="pageTitle" Margin="25" FontSize="24" HorizontalTextAlignment="Center" />
+                <Label x:Name="typeId" />
                 <Label Text="Title:" />
                 <Entry x:Name="title" />
                 <Label x:Name="typeOrStatus" Text="Status:" />
