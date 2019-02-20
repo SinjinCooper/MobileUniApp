@@ -17,6 +17,7 @@ namespace MobileUniApp
         public DateTime EndDate { get; set; }
         [Indexed]
         public int TermId { get; set; }
+        public string Notes { get; set; }
         [Ignore]
         public Instructor Instructor { get; set; }
         [Ignore]

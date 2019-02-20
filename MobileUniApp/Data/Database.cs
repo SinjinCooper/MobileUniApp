@@ -96,5 +96,21 @@ namespace MobileUniApp.Data
             }
             catch (Exception ex) { }
         }
+
+        // EDIT EXISTING ITEM -------------------------------------------------//
+        public void EditItem(Term term)
+        {
+
+        }
+
+        public void EditItem(Course course)
+        {
+
+        }
+
+        public void EditItem(Assessment assessment)
+        {
+
+        }
     }
 }
