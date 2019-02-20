@@ -11,7 +11,7 @@ namespace MobileUniApp.View
         {
             InitializeComponent();
             pageTitle.Text = "Edit Term";
-            typeId.Text = "Term Id: " + term.TermId;
+            typeId.Text = term.TermId.ToString();
             title.Text = term.Title;
             statusPicker.SelectedItem = term.Status;
             startDatePicker.Date = term.StartDate;
@@ -22,7 +22,8 @@ namespace MobileUniApp.View
         {
             InitializeComponent();
             pageTitle.Text = "Edit Course";
-            typeId.Text = "Course Id: " + course.CourseId;
+            typeId.Text = course.CourseId.ToString();
+            otherId.Text = course.TermId.ToString();
             title.Text = course.Title;
             statusPicker.SelectedItem = course.Status;
             startDatePicker.Date = course.StartDate;
@@ -33,7 +34,8 @@ namespace MobileUniApp.View
         {
             InitializeComponent();
             pageTitle.Text = "Edit Assessment";
-            typeId.Text = "Assessment Id: " + assessment.AssessmentId;
+            typeId.Text = assessment.AssessmentId.ToString();
+            otherId.Text = assessment.CourseId.ToString();
             title.Text = assessment.Title;
             statusPicker.IsVisible = false;
             typePicker.IsVisible = true;
@@ -46,12 +48,57 @@ namespace MobileUniApp.View
         public EditItemPage(Instructor instructor)
         {
             InitializeComponent();
+            pageTitle.Text = "Edit Instructor";
+
         }
 
 
 
         public void SaveButtonClicked(object sender, EventArgs e)
         {
+            if (pageTitle.Text == "Edit Term") {
+                Term editedTerm = new Term
+                {
+                    TermId = Convert.ToInt32(typeId.Text),
+                    Title = title.Text,
+                    Status = statusPicker.SelectedItem.ToString(),
+                    StartDate = startDatePicker.Date,
+                    EndDate = endDatePicker.Date
+                };
+                App.DB.EditItem(editedTerm);
+            }
+            else if (pageTitle.Text == "Edit Course") {
+                Course editedCourse = new Course
+                {
+                    CourseId = Convert.ToInt32(typeId.Text),
+                    Title = title.Text,
+                    Status = statusPicker.SelectedItem.ToString(),
+                    StartDate = startDatePicker.Date,
+                    EndDate = endDatePicker.Date,
+                    TermId = Convert.ToInt32(otherId.Text)
+                };
+                App.DB.EditItem(editedCourse);
+            }
+            else if (pageTitle.Text == "Edit Assessment") {
+                Assessment editedAssessment = new Assessment
+                {
+                    AssessmentId = Convert.ToInt32(typeId.Text),
+                    Title = title.Text,
+                    AssessmentType = typePicker.SelectedItem.ToString(),
+                    StartDate = startDatePicker.Date,
+                    EndDate = endDatePicker.Date,
+                    CourseId = Convert.ToInt32(otherId.Text)
+                };
+                App.DB.EditItem(editedAssessment);
+            }
+            //--------------------------------------------------------
+            else if (pageTitle.Text == "Edit Instructor") {
+                Instructor instructor = new Instructor
+                {
+                    //CourseId = Convert.ToInt32(otherId.Text)
+                };
+            }
+            // --------------------------------------------------------
 
             ClosePage();
         }

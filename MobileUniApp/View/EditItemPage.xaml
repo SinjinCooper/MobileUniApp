@@ -4,7 +4,10 @@
         <ScrollView>
             <StackLayout>
                 <Label x:Name="pageTitle" Margin="25" FontSize="24" HorizontalTextAlignment="Center" />
-                <Label x:Name="typeId" />
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="typeId" HorizontalOptions="Start"/>
+                    <Label x:Name="otherId" HorizontalOptions="End"/>
+                </StackLayout>
                 <Label Text="Title:" />
                 <Entry x:Name="title" />
                 <Label x:Name="typeOrStatus" Text="Status:" />
