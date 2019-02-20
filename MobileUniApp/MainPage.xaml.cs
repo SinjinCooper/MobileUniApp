@@ -83,7 +83,7 @@ namespace MobileUniApp
 
         async void AddTermButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AddItemPage("term"));
+            await Navigation.PushModalAsync(new AddItemPage("term", 0));
         }
     }
 }

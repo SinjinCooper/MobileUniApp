@@ -6,7 +6,7 @@
                 
                 <Label x:Name="titleLabel" TextColor="White" BackgroundColor="Navy" FontAttributes="Bold" FontSize="32"
                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                <Label x:Name="termIdLabel" TextColor="White" BackgroundColor="Navy" FontSize="12" VerticalTextAlignment="Start"/>
+                <Label x:Name="termIdLabel" TextColor="White" BackgroundColor="Navy" FontSize="12" HorizontalTextAlignment="Start"/>
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="5" />
                 
                 <StackLayout x:Name="CoursesLayout" Spacing="0">

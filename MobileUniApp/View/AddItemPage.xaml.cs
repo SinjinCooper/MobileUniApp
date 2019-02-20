@@ -7,23 +7,25 @@ namespace MobileUniApp.View
 {
     public partial class AddItemPage : ContentPage
     {
-        public AddItemPage(string pageType)
+        public AddItemPage(string pageType, int id)
         {
             InitializeComponent();
 
-            BuildPageType(pageType);
+            BuildPageType(pageType, id);
         }
 
-        public void BuildPageType(string pageType)
+        public void BuildPageType(string pageType, int id)
         {
             if (pageType == "assessment") {
                 pageTitle.Text = "Add New Assessment";
+                idLabel.Text = id.ToString();
                 typeOrStatus.Text = "Type";
                 statusPicker.IsVisible = false;
                 typePicker.IsVisible = true;
             }
             else if (pageType == "course") {
                 pageTitle.Text = "Add New Course";
+                idLabel.Text = id.ToString();
             }
         }
 
@@ -35,7 +37,8 @@ namespace MobileUniApp.View
                     Title = title.Text,
                     AssessmentType = typePicker.SelectedItem.ToString(),
                     StartDate = startDatePicker.Date,
-                    EndDate = endDatePicker.Date
+                    EndDate = endDatePicker.Date,
+                    CourseId = Convert.ToInt32(idLabel.Text)
                 };
                 App.DB.SaveNewItem(assessment);
             }
@@ -45,7 +48,8 @@ namespace MobileUniApp.View
                     Title = title.Text,
                     Status = statusPicker.SelectedItem.ToString(),
                     StartDate = startDatePicker.Date,
-                    EndDate = endDatePicker.Date
+                    EndDate = endDatePicker.Date,
+                    TermId = Convert.ToInt32(idLabel.Text)
                 };
                 App.DB.SaveNewItem(course);
             }

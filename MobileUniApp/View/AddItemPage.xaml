@@ -4,6 +4,7 @@
         <ScrollView>
             <StackLayout>
                 <Label x:Name="pageTitle" Margin="25" Text="Add New Term" FontSize="24" HorizontalTextAlignment="Center" />
+                <Label x:Name="idLabel" FontSize="12" HorizontalTextAlignment="End"/>
                 <Label Text="Title:" />
                 <Entry x:Name="title" />
                 <Label x:Name="typeOrStatus" Text="Status:" />

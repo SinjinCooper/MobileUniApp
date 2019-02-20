@@ -11,7 +11,7 @@ namespace MobileUniApp.View
         {
             InitializeComponent();
             titleLabel.Text = term.Title;
-            termIdLabel.Text = "Term Id: " + term.TermId.ToString();
+            termIdLabel.Text = term.TermId.ToString();
             BuildTermPage(term);
         }
 
@@ -60,13 +60,19 @@ namespace MobileUniApp.View
         public void OnCourseClicked(object sender, EventArgs e)
         {
             var id = ((Button)sender).ClassId;
-            Course courseClicked = App.DB.GetCourseByClassId(id);
-            // Navigate to course 
+            Course course = App.DB.GetCourseByClassId(id);
+            Navigation.PushAsync(new CoursePage(course));
         }
 
         public void EditCourseClicked(object sender, EventArgs e)
         {
-
+            var id = ((Button)sender).ClassId;
+            Course course = App.DB.GetCourseByClassId(id);
+            GoToEditCourse(course);
+        }
+        async void GoToEditCourse(Course course)
+        {
+            await Navigation.PushModalAsync(new EditItemPage(course));
         }
 
         public void DeleteCourseClicked(object sender, EventArgs e)
@@ -74,9 +80,14 @@ namespace MobileUniApp.View
 
         }
 
-        async void AddCourseButtonClicked(object sender, EventArgs e)
+        public void AddCourseButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AddItemPage("course"));
+            int id = Convert.ToInt32(termIdLabel.Text);
+            GoToAddCourse(id);
+        }
+        async void GoToAddCourse(int id)
+        {
+            await Navigation.PushModalAsync(new AddItemPage("course", id));
         }
     }
 }
