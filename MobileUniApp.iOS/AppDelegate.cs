@@ -23,7 +23,7 @@ namespace MobileUniApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            string dbPath = FileAccessHelper.GetLocalFilePath("student.db3");
+            string dbPath = FileAccessHelper.GetLocalFilePath("test.db3");
             LoadApplication(new App(dbPath));
 
             return base.FinishedLaunching(app, options);

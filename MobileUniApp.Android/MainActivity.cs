@@ -19,7 +19,7 @@ namespace MobileUniApp.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            string dbPath = FileAccessHelper.GetLocalFilePath("student.db3");
+            string dbPath = FileAccessHelper.GetLocalFilePath("test.db3");
             LoadApplication(new App(dbPath));
         }
     }
