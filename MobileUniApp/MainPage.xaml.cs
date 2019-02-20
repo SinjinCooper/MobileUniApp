@@ -67,7 +67,13 @@ namespace MobileUniApp
 
         public void EditTermClicked(object sender, EventArgs e)
         {
-
+            var id = ((Button)sender).ClassId;
+            Term term = App.DB.GetTermByClassId(id);
+            GoToEditTerm(term);
+        }
+        async void GoToEditTerm(Term term)
+        {
+            await Navigation.PushModalAsync(new EditItemPage(term));
         }
 
         public void DeleteTermClicked(object sender, EventArgs e)

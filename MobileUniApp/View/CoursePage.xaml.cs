@@ -40,5 +40,10 @@ namespace MobileUniApp.View
         {
 
         }
+
+        public void AddAssessmentButtonClicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
