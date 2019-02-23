@@ -11,7 +11,7 @@ namespace MobileUniApp.View
         {
             InitializeComponent();
             titleLabel.Text = course.Title;
-            courseIdLabel.Text = "Course Id: " + course.CourseId.ToString();
+            courseIdLabel.Text = course.CourseId.ToString();
             BuildCoursePage(course);
         }
 
@@ -37,9 +37,16 @@ namespace MobileUniApp.View
             // To do
         }
 
-        public void EditButtonClicked(object sender, EventArgs e)
+        public void EditAssessmentClicked(object sender, EventArgs e)
         {
+            var id = ((Button)sender).ClassId;
+            Assessment assessment = App.DB.GetAssessmentByClassId(id);
+            GoToEditAssessment(assessment);
 
+        }
+        async void GoToEditAssessment(Assessment assessment)
+        {
+            await Navigation.PushModalAsync(new EditItemPage(assessment));
         }
 
         public void AddAssessmentButtonClicked(object sender, EventArgs e)

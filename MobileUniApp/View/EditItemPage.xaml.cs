@@ -44,7 +44,6 @@ namespace MobileUniApp.View
             endDatePicker.Date = assessment.EndDate;
         }
 
-        // Instructor editing page will look different
         public EditItemPage(Instructor instructor)
         {
             InitializeComponent();
@@ -96,14 +95,15 @@ namespace MobileUniApp.View
                 };
                 App.DB.EditItem(editedAssessment);
             }
-            //--------------------------------------------------------
             else if (pageTitle.Text == "Edit Instructor") {
                 Instructor instructor = new Instructor
                 {
-                    //CourseId = Convert.ToInt32(otherId.Text)
+                    Name = name.Text,
+                    Phone = phone.Text,
+                    Email = email.Text,
+                    CourseId = Convert.ToInt32(typeId.Text)
                 };
             }
-            // --------------------------------------------------------
 
             ClosePage();
         }

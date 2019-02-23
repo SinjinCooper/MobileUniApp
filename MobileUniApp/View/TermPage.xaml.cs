@@ -28,11 +28,11 @@ namespace MobileUniApp.View
             Label courseNameLabel = new Label { Text = course.Title, HorizontalTextAlignment = TextAlignment.Start };
             Label statusLabel = new Label { Text = course.Status, HorizontalTextAlignment = TextAlignment.End };
             Label dateRangeLabel = new Label { Text = "(date range)", HorizontalTextAlignment = TextAlignment.Start };
-            Button termButton = new Button { ClassId = course.TermId.ToString(), BackgroundColor = Color.Transparent, TextColor = Color.Transparent };
+            Button termButton = new Button { ClassId = course.CourseId.ToString(), BackgroundColor = Color.Transparent, TextColor = Color.Transparent };
             termButton.Clicked += OnCourseClicked;
-            Button editButton = new Button { ClassId = course.TermId.ToString(), Text = "Edit", HorizontalOptions = LayoutOptions.Start };
+            Button editButton = new Button { ClassId = course.CourseId.ToString(), Text = "Edit", HorizontalOptions = LayoutOptions.Start };
             editButton.Clicked += EditCourseClicked;
-            Button deleteButton = new Button { ClassId = course.TermId.ToString(), Text = "Delete" };
+            Button deleteButton = new Button { ClassId = course.CourseId.ToString(), Text = "Delete" };
             deleteButton.Clicked += DeleteCourseClicked;
             BoxView border = new BoxView { Color = Color.Black, WidthRequest = 100, HeightRequest = 3 };
 
