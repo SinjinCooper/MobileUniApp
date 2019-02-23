@@ -48,8 +48,13 @@ namespace MobileUniApp.View
         public EditItemPage(Instructor instructor)
         {
             InitializeComponent();
+            nonInstLayout.IsVisible = false;
+            instLayout.IsVisible = true;
             pageTitle.Text = "Edit Instructor";
-
+            typeId.Text = instructor.CourseId.ToString();
+            name.Text = instructor.Name;
+            phone.Text = instructor.Phone;
+            email.Text = instructor.Email;
         }
 
 

@@ -22,18 +22,19 @@ namespace MobileUniApp.View
                 AddAssessmentGrid(a);
             }
 
-            AddInstructorGrid(course.Instructor);
+            course.Instructor = App.DB.GetInstructorByCourseId(course);
+            instructorName.Text = course.Instructor.Name;
+            instructorPhone.Text = course.Instructor.Phone;
+            instructorEmail.Text = course.Instructor.Email;
 
+            if (course.Notes != null) {
+                notesEditor.Text = course.Notes;
+            }
         }
 
         public void AddAssessmentGrid(Assessment assessment)
         {
             // To do
-        }
-
-        public void AddInstructorGrid(Instructor instructor)
-        {
-            //to do 
         }
 
         public void EditButtonClicked(object sender, EventArgs e)
@@ -43,7 +44,12 @@ namespace MobileUniApp.View
 
         public void AddAssessmentButtonClicked(object sender, EventArgs e)
         {
-
+            int id = Convert.ToInt32(courseIdLabel.Text);
+            GoToAddAssessment(id);
+        }
+        async void GoToAddAssessment(int id)
+        {
+            await Navigation.PushModalAsync(new AddItemPage("assessment", id));
         }
     }
 }

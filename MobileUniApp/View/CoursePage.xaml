@@ -14,7 +14,7 @@
                 
                 <StackLayout x:Name="AddButtonLayout">
                     <!-- Keeps add button below courses. -->
-                    <Button Text="+Add Course" Clicked="AddAssessmentButtonClicked"/>
+                    <Button Text="+Add Assessment" Clicked="AddAssessmentButtonClicked"/>
                 </StackLayout>
                 
                 <StackLayout>
@@ -32,6 +32,7 @@
                 <StackLayout>
                     <Label Text="Course Notes:" />
                     <Editor x:Name="notesEditor" />
+                    <!-- Add save, share options for notes -->
                 </StackLayout>
                 
             </StackLayout>
