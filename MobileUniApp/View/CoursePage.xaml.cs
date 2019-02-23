@@ -34,7 +34,30 @@ namespace MobileUniApp.View
 
         public void AddAssessmentGrid(Assessment assessment)
         {
-            // To do
+            Label nameLabel = new Label { Text = assessment.Title, HorizontalTextAlignment = TextAlignment.Start };
+            Label typeLabel = new Label { Text = assessment.AssessmentType, HorizontalTextAlignment = TextAlignment.End };
+            Label dateRangeLabel = new Label { Text = "(date range)", HorizontalTextAlignment = TextAlignment.Start };
+            Button editButton = new Button { ClassId = assessment.AssessmentId.ToString(), Text = "Edit", HorizontalOptions = LayoutOptions.Start };
+            editButton.Clicked += EditAssessmentClicked;
+            Button deleteButton = new Button { ClassId = assessment.AssessmentId.ToString(), Text = "Delete" };
+            deleteButton.Clicked += DeleteAssessmentClicked;
+            BoxView border = new BoxView { Color = Color.Black, WidthRequest = 100, HeightRequest = 3 };
+
+            Grid grid = new Grid { RowSpacing = 0, ColumnSpacing = 0 };
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.Children.Add(nameLabel, 0, 0);
+            grid.Children.Add(typeLabel, 1, 0);
+            grid.Children.Add(dateRangeLabel, 0, 1);
+            grid.Children.Add(editButton, 0, 2);
+            grid.Children.Add(deleteButton, 1, 2);
+            Grid.SetRowSpan(typeLabel, 2);
+
+            AssessmentsLayout.Children.Add(grid);
+            AssessmentsLayout.Children.Add(border);
         }
 
         public void EditAssessmentClicked(object sender, EventArgs e)
@@ -47,6 +70,11 @@ namespace MobileUniApp.View
         async void GoToEditAssessment(Assessment assessment)
         {
             await Navigation.PushModalAsync(new EditItemPage(assessment));
+        }
+
+        public void DeleteAssessmentClicked(object sender, EventArgs e)
+        {
+            // todo
         }
 
         public void AddAssessmentButtonClicked(object sender, EventArgs e)
