@@ -71,6 +71,16 @@ namespace MobileUniApp.Data
             return new List<Assessment>();
         }
 
+        public Assessment GetAssessmentByClassId(string classId)
+        {
+            try {
+                int id = Int32.Parse(classId);
+                return conn.Table<Assessment>().Where(i => i.CourseId == id).First();
+            }
+            catch (Exception ex) { }
+            return new Assessment();
+        }
+
 
         // INSTRUCTOR ---------------------------------------------------------//
         public Instructor GetInstructorByCourseId(Course course)
