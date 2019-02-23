@@ -72,6 +72,17 @@ namespace MobileUniApp.Data
         }
 
 
+        // INSTRUCTOR ---------------------------------------------------------//
+        public Instructor GetInstructorByCourseId(Course course)
+        {
+            try {
+                return conn.Table<Instructor>().Where(i => i.CourseId == course.CourseId).First();
+            }
+            catch (Exception ex) { }
+            return new Instructor();
+        }
+
+
         // SAVE NEW ITEM ------------------------------------------------------//
         public void SaveNewItem(Term term)
         {
