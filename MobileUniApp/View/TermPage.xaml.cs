@@ -77,7 +77,7 @@ namespace MobileUniApp.View
 
         public void DeleteCourseClicked(object sender, EventArgs e)
         {
-
+            //todo
         }
 
         public void AddCourseButtonClicked(object sender, EventArgs e)

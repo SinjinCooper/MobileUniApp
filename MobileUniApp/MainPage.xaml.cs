@@ -78,7 +78,7 @@ namespace MobileUniApp
 
         public void DeleteTermClicked(object sender, EventArgs e)
         {
-
+            //todo
         }
 
         async void AddTermButtonClicked(object sender, EventArgs e)

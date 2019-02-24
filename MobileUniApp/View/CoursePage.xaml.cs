@@ -23,9 +23,11 @@ namespace MobileUniApp.View
             }
 
             course.Instructor = App.DB.GetInstructorByCourseId(course);
+            //course.Instructor.CourseId = course.CourseId;
             instructorName.Text = course.Instructor.Name;
             instructorPhone.Text = course.Instructor.Phone;
             instructorEmail.Text = course.Instructor.Email;
+            editInstructorButton.ClassId = course.Instructor.InstructorId.ToString();
 
             if (course.Notes != null) {
                 notesEditor.Text = course.Notes;
@@ -60,6 +62,7 @@ namespace MobileUniApp.View
             AssessmentsLayout.Children.Add(border);
         }
 
+
         public void EditAssessmentClicked(object sender, EventArgs e)
         {
             var id = ((Button)sender).ClassId;
@@ -72,10 +75,12 @@ namespace MobileUniApp.View
             await Navigation.PushModalAsync(new EditItemPage(assessment));
         }
 
+
         public void DeleteAssessmentClicked(object sender, EventArgs e)
         {
             // todo
         }
+
 
         public void AddAssessmentButtonClicked(object sender, EventArgs e)
         {
@@ -85,6 +90,18 @@ namespace MobileUniApp.View
         async void GoToAddAssessment(int id)
         {
             await Navigation.PushModalAsync(new AddItemPage("assessment", id));
+        }
+
+
+        public void EditInstructorClicked(object sender, EventArgs e)
+        {
+            var id = ((Button)sender).ClassId;
+            //Instructor instructor = App.DB.GetInstructorByCourseId(id);
+
+        }
+        async void GoToEditInstructor(Instructor instructor)
+        {
+            await Navigation.PushModalAsync(new EditItemPage(instructor));
         }
     }
 }
