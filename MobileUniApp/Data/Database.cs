@@ -121,17 +121,37 @@ namespace MobileUniApp.Data
         // EDIT EXISTING ITEM -------------------------------------------------//
         public void EditItem(Term term)
         {
-
+            try {
+                conn.Update(term);
+            }
+            catch (Exception ex) { }
         }
 
         public void EditItem(Course course)
         {
-
+            try {
+                conn.Update(course);
+            }
+            catch (Exception ex) { }
         }
 
         public void EditItem(Assessment assessment)
         {
+            try {
+                conn.Update(assessment);
+            }
+            catch (Exception ex) { }
+        }
 
+        public void EditItem(Instructor instructor)
+        {
+            try {
+                var rowsAffected = conn.Update(instructor);
+                if (rowsAffected == 0) {
+                    conn.Insert(instructor);
+                }
+            }
+            catch (Exception ex) { }
         }
     }
 }
