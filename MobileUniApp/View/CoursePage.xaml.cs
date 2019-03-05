@@ -78,7 +78,7 @@ namespace MobileUniApp.View
 
         public void DeleteAssessmentClicked(object sender, EventArgs e)
         {
-            // todo
+
         }
 
 

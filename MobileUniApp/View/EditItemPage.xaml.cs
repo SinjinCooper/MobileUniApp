@@ -50,7 +50,8 @@ namespace MobileUniApp.View
             nonInstLayout.IsVisible = false;
             instLayout.IsVisible = true;
             pageTitle.Text = "Edit Instructor";
-            typeId.Text = instructor.CourseId.ToString();
+            typeId.Text = instructor.InstructorId.ToString();
+            otherId.Text = instructor.CourseId.ToString();
             name.Text = instructor.Name;
             phone.Text = instructor.Phone;
             email.Text = instructor.Email;
@@ -98,6 +99,7 @@ namespace MobileUniApp.View
             else if (pageTitle.Text == "Edit Instructor") {
                 Instructor instructor = new Instructor
                 {
+                    InstructorId = Convert.ToInt32(typeId.Text),
                     Name = name.Text,
                     Phone = phone.Text,
                     Email = email.Text,
