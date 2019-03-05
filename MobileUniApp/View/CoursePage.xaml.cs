@@ -22,12 +22,12 @@ namespace MobileUniApp.View
                 AddAssessmentGrid(a);
             }
 
-            course.Instructor = App.DB.GetInstructorByCourseId(course);
+            course.Instructor = App.DB.GetInstructorByCourseId((int)course.CourseId);
             //course.Instructor.CourseId = course.CourseId;
             instructorName.Text = course.Instructor.Name;
             instructorPhone.Text = course.Instructor.Phone;
             instructorEmail.Text = course.Instructor.Email;
-            editInstructorButton.ClassId = course.Instructor.InstructorId.ToString();
+            editInstructorButton.ClassId = course.CourseId.ToString();
 
             if (course.Notes != null) {
                 notesEditor.Text = course.Notes;
@@ -96,8 +96,8 @@ namespace MobileUniApp.View
         public void EditInstructorClicked(object sender, EventArgs e)
         {
             var id = ((Button)sender).ClassId;
-            //Instructor instructor = App.DB.GetInstructorByCourseId(id);
-
+            Instructor instructor = App.DB.GetInstructorByCourseId(Convert.ToInt32(id));
+            GoToEditInstructor(instructor);
         }
         async void GoToEditInstructor(Instructor instructor)
         {

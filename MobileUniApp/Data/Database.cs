@@ -83,10 +83,10 @@ namespace MobileUniApp.Data
 
 
         // INSTRUCTOR ---------------------------------------------------------//
-        public Instructor GetInstructorByCourseId(Course course)
+        public Instructor GetInstructorByCourseId(int id)
         {
             try {
-                return conn.Table<Instructor>().Where(i => i.CourseId == course.CourseId).First();
+                return conn.Table<Instructor>().Where(i => i.CourseId == id).First();
             }
             catch (Exception ex) { }
             return new Instructor();
