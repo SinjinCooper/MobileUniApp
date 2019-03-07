@@ -77,7 +77,9 @@ namespace MobileUniApp.View
 
         public void DeleteCourseClicked(object sender, EventArgs e)
         {
-            //todo
+            var id = ((Button)sender).ClassId;
+            Course course = App.DB.GetCourseByClassId(id);
+            App.DB.DeleteItem(course);
         }
 
         public void AddCourseButtonClicked(object sender, EventArgs e)

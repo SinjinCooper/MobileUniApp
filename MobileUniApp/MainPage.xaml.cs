@@ -78,7 +78,9 @@ namespace MobileUniApp
 
         public void DeleteTermClicked(object sender, EventArgs e)
         {
-            //todo
+            var id = ((Button)sender).ClassId;
+            Term term = App.DB.GetTermByClassId(id);
+            App.DB.DeleteItem(term);
         }
 
         async void AddTermButtonClicked(object sender, EventArgs e)

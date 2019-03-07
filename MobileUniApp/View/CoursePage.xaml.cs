@@ -78,7 +78,9 @@ namespace MobileUniApp.View
 
         public void DeleteAssessmentClicked(object sender, EventArgs e)
         {
-
+            var id = ((Button)sender).ClassId;
+            Assessment assessment = App.DB.GetAssessmentByClassId(id);
+            App.DB.DeleteItem(assessment);
         }
 
 
