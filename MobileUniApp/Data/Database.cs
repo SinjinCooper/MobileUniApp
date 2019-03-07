@@ -153,5 +153,33 @@ namespace MobileUniApp.Data
             }
             catch (Exception ex) { }
         }
+
+        // DELETE ITEM --------------------------------------------------------//
+        public void DeleteItem(Term term)
+        {
+            try
+            {
+                conn.Delete(term);
+            }
+            catch (Exception ex) { }
+        }
+
+        public void DeleteItem(Course course)
+        {
+            try
+            {
+                conn.Delete(course);
+            }
+            catch (Exception ex) { }
+        }
+
+        public void DeleteItem(Assessment assessment)
+        {
+            try
+            {
+                conn.Delete(assessment);
+            }
+            catch (Exception ex) { }
+        }
     }
 }
