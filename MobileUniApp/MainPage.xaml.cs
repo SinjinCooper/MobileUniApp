@@ -18,10 +18,19 @@ namespace MobileUniApp
 
         public void BuildMainPage()
         {
-            List<Term> termList = App.DB.GetAllTerms();
-            foreach (Term t in termList) {
-                AddTermGrid(t);
-            }
+            List<Term> list = App.DB.GetAllTerms();
+            TermsListView.ItemsSource = list;
+
+            //List<Term> termList = App.DB.GetAllTerms();
+            //foreach (Term t in termList) {
+            //    AddTermGrid(t);
+            //}
+        }
+
+        public void SetListSource()
+        {
+            List<Term> list = App.DB.GetAllTerms();
+            TermsListView.ItemsSource = list;
         }
 
         public void AddTermGrid(Term term)
@@ -85,7 +94,12 @@ namespace MobileUniApp
 
         async void AddTermButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AddItemPage("term", 0));
+            var modalPage = new AddItemPage("term", 0);
+            modalPage.Disappearing += (sender2, e2) =>
+            {
+                SetListSource();
+            };
+            await Navigation.PushModalAsync(modalPage);
         }
     }
 }
