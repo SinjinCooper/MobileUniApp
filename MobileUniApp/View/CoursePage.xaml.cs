@@ -13,15 +13,11 @@ namespace MobileUniApp.View
             titleLabel.Text = course.Title;
             courseIdLabel.Text = course.CourseId.ToString();
             BuildCoursePage(course);
+            SetListSource(course);
         }
 
         public void BuildCoursePage(Course course)
         {
-            List<Assessment> assessments = App.DB.GetAssessmentsByCourse(course);
-            foreach(Assessment a in assessments) {
-                AddAssessmentGrid(a);
-            }
-
             course.Instructor = App.DB.GetInstructorByCourseId((int)course.CourseId);
             //course.Instructor.CourseId = course.CourseId;
             instructorName.Text = course.Instructor.Name;
@@ -34,33 +30,39 @@ namespace MobileUniApp.View
             }
         }
 
-        public void AddAssessmentGrid(Assessment assessment)
+        public void SetListSource(Course course)
         {
-            Label nameLabel = new Label { Text = assessment.Title, HorizontalTextAlignment = TextAlignment.Start };
-            Label typeLabel = new Label { Text = assessment.AssessmentType, HorizontalTextAlignment = TextAlignment.End };
-            Label dateRangeLabel = new Label { Text = "(date range)", HorizontalTextAlignment = TextAlignment.Start };
-            Button editButton = new Button { ClassId = assessment.AssessmentId.ToString(), Text = "Edit", HorizontalOptions = LayoutOptions.Start };
-            editButton.Clicked += EditAssessmentClicked;
-            Button deleteButton = new Button { ClassId = assessment.AssessmentId.ToString(), Text = "Delete" };
-            deleteButton.Clicked += DeleteAssessmentClicked;
-            BoxView border = new BoxView { Color = Color.Black, WidthRequest = 100, HeightRequest = 3 };
-
-            Grid grid = new Grid { RowSpacing = 0, ColumnSpacing = 0 };
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-            grid.Children.Add(nameLabel, 0, 0);
-            grid.Children.Add(typeLabel, 1, 0);
-            grid.Children.Add(dateRangeLabel, 0, 1);
-            grid.Children.Add(editButton, 0, 2);
-            grid.Children.Add(deleteButton, 1, 2);
-            Grid.SetRowSpan(typeLabel, 2);
-
-            AssessmentsLayout.Children.Add(grid);
-            AssessmentsLayout.Children.Add(border);
+            List<Assessment> assessments = App.DB.GetAssessmentsByCourse(course);
+            AssessmentsListView.ItemsSource = assessments;
         }
+
+        //public void AddAssessmentGrid(Assessment assessment)
+        //{
+        //    Label nameLabel = new Label { Text = assessment.Title, HorizontalTextAlignment = TextAlignment.Start };
+        //    Label typeLabel = new Label { Text = assessment.AssessmentType, HorizontalTextAlignment = TextAlignment.End };
+        //    Label dateRangeLabel = new Label { Text = "(date range)", HorizontalTextAlignment = TextAlignment.Start };
+        //    Button editButton = new Button { ClassId = assessment.AssessmentId.ToString(), Text = "Edit", HorizontalOptions = LayoutOptions.Start };
+        //    editButton.Clicked += EditAssessmentClicked;
+        //    Button deleteButton = new Button { ClassId = assessment.AssessmentId.ToString(), Text = "Delete" };
+        //    deleteButton.Clicked += DeleteAssessmentClicked;
+        //    BoxView border = new BoxView { Color = Color.Black, WidthRequest = 100, HeightRequest = 3 };
+
+        //    Grid grid = new Grid { RowSpacing = 0, ColumnSpacing = 0 };
+        //    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+        //    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+        //    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+        //    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+        //    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        //    grid.Children.Add(nameLabel, 0, 0);
+        //    grid.Children.Add(typeLabel, 1, 0);
+        //    grid.Children.Add(dateRangeLabel, 0, 1);
+        //    grid.Children.Add(editButton, 0, 2);
+        //    grid.Children.Add(deleteButton, 1, 2);
+        //    Grid.SetRowSpan(typeLabel, 2);
+
+        //    AssessmentsLayout.Children.Add(grid);
+        //    AssessmentsLayout.Children.Add(border);
+        //}
 
 
         public void EditAssessmentClicked(object sender, EventArgs e)
@@ -86,12 +88,18 @@ namespace MobileUniApp.View
 
         public void AddAssessmentButtonClicked(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(courseIdLabel.Text);
-            GoToAddAssessment(id);
+            GoToAddAssessment();
         }
-        async void GoToAddAssessment(int id)
+        async void GoToAddAssessment()
         {
-            await Navigation.PushModalAsync(new AddItemPage("assessment", id));
+            Course course = App.DB.GetCourseByClassId(courseIdLabel.ToString());
+
+            var modalPage = new AddItemPage("assessment", (int)course.CourseId);
+            modalPage.Disappearing += (sender2, e2) =>
+            {
+                SetListSource(course);
+            };
+            await Navigation.PushModalAsync(modalPage);
         }
 
 

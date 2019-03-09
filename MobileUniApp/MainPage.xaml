@@ -11,7 +11,7 @@
                 <ListView x:Name="TermsListView">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell Height="50">
                                 <Grid RowSpacing="0" ColumnSpacing="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
@@ -25,10 +25,10 @@
                                     <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="0" />
                                     <Label Text="{Binding Status}" Grid.Row="0" Grid.Column="1"/>
                                     <Label Text="(Binding DateRange)" Grid.Row="1" Grid.Column="0"/>
-                                    <Button Text="Edit" Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" Clicked="EditTermClicked"/>
-                                    <Button Text="Delete" Grid.Row="2" Grid.Column="1" Clicked="DeleteTermClicked"/>
-                                    <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" TextColor="Transparent" Clicked="OnTermClicked"/>
-                                    <BoxView Color="Black" WidthRequest="100" HeightRequest="3"/>
+                                    <Button ClassId="{Binding TermId}" Text="Edit" Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" Clicked="EditTermClicked"/>
+                                    <Button ClassId="{Binding TermId}" Text="Delete" Grid.Row="2" Grid.Column="1" Clicked="DeleteTermClicked"/>
+                                    <Button ClassId="{Binding TermId}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                            BackgroundColor="Transparent" TextColor="Transparent" Clicked="OnTermClicked"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
