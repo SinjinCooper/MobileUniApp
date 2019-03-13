@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using MobileUniApp.View;
 
@@ -30,7 +31,8 @@ namespace MobileUniApp
         public void SetListSource()
         {
             List<Term> list = App.DB.GetAllTerms();
-            TermsListView.ItemsSource = list;
+            ObservableCollection<Term> ocTerms = new ObservableCollection<Term>(list);
+            TermsListView.ItemsSource = ocTerms;
         }
 
         //public void AddTermGrid(Term term)
@@ -90,6 +92,7 @@ namespace MobileUniApp
             var id = ((Button)sender).ClassId;
             Term term = App.DB.GetTermByClassId(id);
             App.DB.DeleteItem(term);
+            SetListSource();
         }
 
         async void AddTermButtonClicked(object sender, EventArgs e)
@@ -98,6 +101,7 @@ namespace MobileUniApp
             modalPage.Disappearing += (sender2, e2) =>
             {
                 SetListSource();
+                TermsLayout.VerticalOptions = LayoutOptions.FillAndExpand;
             };
             await Navigation.PushModalAsync(modalPage);
         }

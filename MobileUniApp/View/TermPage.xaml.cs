@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
 
@@ -26,7 +27,8 @@ namespace MobileUniApp.View
         public void SetListSource(Term term)
         {
             List<Course> coursesList = App.DB.GetCoursesByTerm(term);
-            CoursesListView.ItemsSource = coursesList;
+            ObservableCollection<Course> ocCourses = new ObservableCollection<Course>(coursesList);
+            CoursesListView.ItemsSource = ocCourses;
         }
 
         //public void AddCourseGrid(Course course)
@@ -86,6 +88,9 @@ namespace MobileUniApp.View
             var id = ((Button)sender).ClassId;
             Course course = App.DB.GetCourseByClassId(id);
             App.DB.DeleteItem(course);
+
+            Term term = App.DB.GetTermByClassId(termIdLabel.Text);
+            SetListSource(term);
         }
 
         public void AddCourseButtonClicked(object sender, EventArgs e)

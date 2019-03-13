@@ -7,16 +7,16 @@
                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
             <BoxView Color="Black" WidthRequest="100" HeightRequest="5" />
             
-            <StackLayout x:Name="TermsLayout" Spacing="0">
-                <ListView x:Name="TermsListView">
+            <StackLayout x:Name="TermsLayout" Spacing="0" VerticalOptions="FillAndExpand">
+                <ListView x:Name="TermsListView" RowHeight="110">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell Height="50">
+                            <ViewCell>
                                 <Grid RowSpacing="0" ColumnSpacing="0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*" />
