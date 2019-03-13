@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
 
@@ -18,22 +19,28 @@ namespace MobileUniApp.View
 
         public void BuildCoursePage(Course course)
         {
-            course.Instructor = App.DB.GetInstructorByCourseId((int)course.CourseId);
-            //course.Instructor.CourseId = course.CourseId;
-            instructorName.Text = course.Instructor.Name;
-            instructorPhone.Text = course.Instructor.Phone;
-            instructorEmail.Text = course.Instructor.Email;
-            editInstructorButton.ClassId = course.CourseId.ToString();
+            SetInstructor(course);
 
+            // May need to update how "notes" work
             if (course.Notes != null) {
                 notesEditor.Text = course.Notes;
             }
         }
 
+        public void SetInstructor(Course course)
+        {
+            course.Instructor = App.DB.GetInstructorByCourseId((int)course.CourseId);
+            instructorName.Text = course.Instructor.Name;
+            instructorPhone.Text = course.Instructor.Phone;
+            instructorEmail.Text = course.Instructor.Email;
+            editInstructorButton.ClassId = course.CourseId.ToString();
+        }
+
         public void SetListSource(Course course)
         {
             List<Assessment> assessments = App.DB.GetAssessmentsByCourse(course);
-            AssessmentsListView.ItemsSource = assessments;
+            ObservableCollection<Assessment> ocAssess = new ObservableCollection<Assessment>(assessments);
+            AssessmentsListView.ItemsSource = ocAssess;
         }
 
         //public void AddAssessmentGrid(Assessment assessment)
@@ -83,6 +90,9 @@ namespace MobileUniApp.View
             var id = ((Button)sender).ClassId;
             Assessment assessment = App.DB.GetAssessmentByClassId(id);
             App.DB.DeleteItem(assessment);
+
+            Course course = App.DB.GetCourseByClassId(courseIdLabel.Text);
+            SetListSource(course);
         }
 
 
@@ -92,7 +102,7 @@ namespace MobileUniApp.View
         }
         async void GoToAddAssessment()
         {
-            Course course = App.DB.GetCourseByClassId(courseIdLabel.ToString());
+            Course course = App.DB.GetCourseByClassId(courseIdLabel.Text);
 
             var modalPage = new AddItemPage("assessment", (int)course.CourseId);
             modalPage.Disappearing += (sender2, e2) =>
@@ -107,11 +117,19 @@ namespace MobileUniApp.View
         {
             var id = ((Button)sender).ClassId;
             Instructor instructor = App.DB.GetInstructorByCourseId(Convert.ToInt32(id));
+            instructor.CourseId = Convert.ToInt32(id);
             GoToEditInstructor(instructor);
         }
         async void GoToEditInstructor(Instructor instructor)
         {
-            await Navigation.PushModalAsync(new EditItemPage(instructor));
+            Course course = App.DB.GetCourseByClassId(courseIdLabel.Text);
+            var modalPage = new EditItemPage(instructor);
+            modalPage.Disappearing += (s, e) =>
+            {
+                SetInstructor(course);
+            };
+
+            await Navigation.PushModalAsync(modalPage);
         }
     }
 }

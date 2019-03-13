@@ -9,16 +9,16 @@
                 <Label x:Name="courseIdLabel" TextColor="White" BackgroundColor="Navy" FontSize="12" VerticalTextAlignment="Start"/>
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="5" />
                 
-                <StackLayout x:Name="AssessmentsLayout" Spacing="0">
-                    <ListView x:Name="AssessmentsListView">
+                <StackLayout x:Name="AssessmentsLayout" Spacing="0" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="AssessmentsListView" RowHeight="110">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell Height="50"> <!-- Test the height -->
+                                <ViewCell> <!-- Test the height -->
                                     <Grid RowSpacing="0" ColumnSpacing="0">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2*" />
