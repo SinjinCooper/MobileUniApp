@@ -58,6 +58,10 @@
                     <Label Text="Course Notes:" />
                     <Editor x:Name="notesEditor" />
                     <!-- Add save, share options for notes -->
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="btnSave" Text="Save" Clicked="SaveNotesClicked"/>
+                        <Button x:Name="btnShare" Text="Share" Clicked="ShareNotesClicked"/>
+                    </StackLayout>
                 </StackLayout>
                 
             </StackLayout>

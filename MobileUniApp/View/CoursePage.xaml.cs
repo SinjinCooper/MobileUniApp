@@ -13,6 +13,8 @@ namespace MobileUniApp.View
             InitializeComponent();
             titleLabel.Text = course.Title;
             courseIdLabel.Text = course.CourseId.ToString();
+            btnSave.ClassId = course.CourseId.ToString();
+            btnShare.ClassId = course.CourseId.ToString();
             BuildCoursePage(course);
             SetListSource(course);
         }
@@ -130,6 +132,18 @@ namespace MobileUniApp.View
             };
 
             await Navigation.PushModalAsync(modalPage);
+        }
+
+        public void SaveNotesClicked(object sender, EventArgs e)
+        {
+            string id = ((Button)sender).ClassId;
+            Course course = App.DB.GetCourseByClassId(id);
+            App.DB.EditItem(course);
+        }
+
+        public void ShareNotesClicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
